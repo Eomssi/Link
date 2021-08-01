@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Link">
+        <activity
+            android:name=".SubUpdateDelete"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SubAdd"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SubInfo"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
