@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -40,7 +41,12 @@ class SubchartActivity : AppCompatActivity() {
         val recycler_view = findViewById<RecyclerView>(R.id.recycler_view)
 
         //리사이클러뷰에 내가 만들어놓은 어댑터 연결
-        val mAdapter = RcviewAdapter(this, subDataList)
+        val mAdapter = RcviewAdapter(this, subDataList) {SubData ->
+           // var str_name = intent.getStringExtra("title_str").toString()
+            val intent = Intent(this, SubInfo::class.java)
+            //intent.putExtra("intent_name", str_name)
+            startActivity(intent)
+            }
         recycler_view.adapter = mAdapter
 
         //리사이클러뷰에 LinearLayoutManager(아이템뷰를 배치시키는 역할) 객체 지정.

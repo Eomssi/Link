@@ -53,13 +53,12 @@
         android:textSize="12sp" />
 
     //누르면 해당 서비스를 추가할 수 있도록 하는 이미지 버튼
-    <ImageButton
+
+    <ImageView
         android:id="@+id/btnShowSubadd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|right"
         android:layout_weight="1"
-        android:backgroundTint="#FFFFFF"
         app:srcCompat="@drawable/ic_forward" />
 
 </LinearLayout>
