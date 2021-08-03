@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import de.hdodenhof.circleimageview.CircleImageView
 
 class SubAdd : AppCompatActivity() {
@@ -25,9 +26,9 @@ class SubAdd : AppCompatActivity() {
     lateinit var payYY: Spinner
     lateinit var payMM: Spinner
     lateinit var payDD: Spinner
-    lateinit var edtCycleYY: EditText
-    lateinit var edtCycleMM: EditText
-    lateinit var edtCycleDD: EditText
+    lateinit var cycleYY: Spinner
+    lateinit var cycleMM: Spinner
+    lateinit var cycleDD: Spinner
     lateinit var notiYY: Spinner
     lateinit var notiMM: Spinner
     lateinit var notiDD: Spinner
@@ -49,9 +50,9 @@ class SubAdd : AppCompatActivity() {
         payYY = findViewById(R.id.payYY)
         payMM = findViewById(R.id.payMM)
         payDD = findViewById(R.id.payDD)
-        edtCycleYY = findViewById(R.id.edtCycleYY)
-        edtCycleMM = findViewById(R.id.edtCycleMM)
-        edtCycleDD = findViewById(R.id.edtCycleDD)
+        cycleYY = findViewById(R.id.cycleYY)
+        cycleMM = findViewById(R.id.cycleMM)
+        cycleDD = findViewById(R.id.cycleDD)
         notiYY = findViewById(R.id.notiYY)
         notiMM = findViewById(R.id.notiMM)
         notiDD = findViewById(R.id.notiDD)
@@ -162,7 +163,7 @@ class SubAdd : AppCompatActivity() {
                 subLogo.setImageResource(R.drawable.flo_logo)
             }
             str_name == "직접 추가" -> {
-                subLogo.setImageResource(R.drawable.ic_profileplus)
+                subLogo.setImageResource(R.drawable.ic_basicimage)
             }
         }
 
@@ -179,9 +180,9 @@ class SubAdd : AppCompatActivity() {
             var str_payMM: String = payMM.selectedItem.toString()
             var str_payDD: String = payDD.selectedItem.toString()
             //결제 주기
-            var str_payCycleYY: String = edtCycleYY.text.toString()
-            var str_payCycleMM: String = edtCycleMM.text.toString()
-            var str_payCycleDD: String = edtCycleDD.text.toString()
+            var str_payCycleYY: String = cycleYY.selectedItem.toString()
+            var str_payCycleMM: String = cycleMM.selectedItem.toString()
+            var str_payCycleDD: String = cycleDD.selectedItem.toString()
             //알림
             var str_notiYY: String = notiYY.selectedItem.toString()
             var str_notiMM: String = notiMM.selectedItem.toString()

@@ -1,0 +1,119 @@
+package com.example.link
+
+import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import de.hdodenhof.circleimageview.CircleImageView
+
+class SubUpdate : AppCompatActivity() {
+    //DB 변수 선언
+    lateinit var dbManager: DBManager
+    lateinit var sqlitedb: SQLiteDatabase
+
+    //위젯 변수 선업
+    lateinit var btnAdd: Button
+    lateinit var edtName: EditText
+    lateinit var edtPayment: EditText
+    lateinit var edtCategory: EditText
+    lateinit var payYY: Spinner
+    lateinit var payMM: Spinner
+    lateinit var payDD: Spinner
+    lateinit var cycleYY: Spinner
+    lateinit var cycleMM: Spinner
+    lateinit var cycleDD: Spinner
+    lateinit var notiYY: Spinner
+    lateinit var notiMM: Spinner
+    lateinit var notiDD: Spinner
+    lateinit var edtmemo: EditText
+
+    //DB에서 받는 정보 변수
+    lateinit var str_name: String
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sub_update)
+
+        //위젯 변수 연결
+        btnAdd = findViewById(R.id.btnAdd)
+        edtName = findViewById(R.id.edtName)
+        edtPayment = findViewById(R.id.edtPayment)
+        edtCategory = findViewById(R.id.edtCategory)
+        payYY = findViewById(R.id.payYY)
+        payMM = findViewById(R.id.payMM)
+        payDD = findViewById(R.id.payDD)
+        cycleYY = findViewById(R.id.cycleYY)
+        cycleMM = findViewById(R.id.cycleMM)
+        cycleDD = findViewById(R.id.cycleDD)
+        notiYY = findViewById(R.id.notiYY)
+        notiMM = findViewById(R.id.notiMM)
+        notiDD = findViewById(R.id.notiDD)
+        edtmemo = findViewById(R.id.edtmemo)
+
+        //DB연결
+        dbManager = DBManager(this, "subaddDB", null, 1)
+
+        //서비스 소개 액티비티에서 전달 된 데이터 받음
+        val intent = intent
+        str_name = intent.getStringExtra("intent_name").toString()
+
+        //edtName칸에 넘겨받은 이름 띄우기
+        edtName.setText(str_name)
+
+
+        //수정하기 버튼을 눌렀을 때
+        btnAdd.setOnClickListener {
+            //브랜드 이름
+            str_name = edtName.text.toString()
+            //최종 결제 금액
+            var str_payment: String = edtPayment.text.toString()
+            //카테고리
+            var str_category: String = edtCategory.text.toString()
+            //첫 결제일
+            var str_payYY: String = payYY.selectedItem.toString()
+            var str_payMM: String = payMM.selectedItem.toString()
+            var str_payDD: String = payDD.selectedItem.toString()
+            //결제 주기
+            var str_payCycleYY: String = cycleYY.selectedItem.toString()
+            var str_payCycleMM: String = cycleMM.selectedItem.toString()
+            var str_payCycleDD: String = cycleDD.selectedItem.toString()
+            //알림
+            var str_notiYY: String = notiYY.selectedItem.toString()
+            var str_notiMM: String = notiMM.selectedItem.toString()
+            var str_notiDD: String = notiDD.selectedItem.toString()
+            //메모
+            var str_memo: String = edtmemo.text.toString()
+
+            //DB에 쓰기, subaddDB에 내용 업데이트, DB 닫기
+            sqlitedb = dbManager.writableDatabase
+            sqlitedb.execSQL("UPDATE subaddDB SET payment = "+ str_payment+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET subCategory = '"+ str_category+ "' WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET payDateYY = "+ str_payYY+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET payDateMM = "+ str_payMM+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET payDateDD = "+ str_payDD+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET payCycleYY = "+ str_payCycleYY+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET payCycleMM = "+ str_payCycleMM+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET payCycleDD = "+ str_payCycleDD+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET notiYY = "+ str_notiYY+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET notiMM = "+ str_notiMM+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET notiDD = "+ str_notiDD+ " WHERE subName = '"+ str_name+ "';")
+            sqlitedb.execSQL("UPDATE subaddDB SET memo = '"+ str_memo+ "' WHERE subName = '"+ str_name+ "';")
+            sqlitedb.close()
+
+            //저장한 내용의 브랜드 이름을 메인 액티비티로 전달
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("intent_name", str_name)
+            startActivity(intent)
+
+            //토스트 메시지 출력
+            Toast.makeText(this, "수정 되었습니다.", Toast.LENGTH_SHORT).show()
+
+        }
+
+    }
+}
+

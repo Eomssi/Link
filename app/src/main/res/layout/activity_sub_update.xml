@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SubAdd">
+    tools:context=".SubUpdate">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,13 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/subLogo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="16dp" />
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -358,6 +354,7 @@
                 android:layout_height="50dp"
                 android:background="@drawable/bg_memoedt"/>
 
+
             <Button
                 android:id="@+id/btnAdd"
                 android:layout_width="match_parent"
@@ -365,7 +362,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_addbutton"
                 android:fontFamily="@font/notosanscjkkr_bold"
-                android:text="추가하기"
+                android:text="수정 완료"
                 android:textSize="15sp" />
 
         </LinearLayout>
