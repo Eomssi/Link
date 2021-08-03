@@ -22,13 +22,14 @@ class SubchartActivity : AppCompatActivity() {
         btn_show_subadd = findViewById(R.id.btn_show_subadd)
 
         //버튼 클릭 시 메인화면으로 이동
-       btn_show_main2.setOnClickListener {
+        btn_show_main2.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)}
 
         //버튼 클릭시 직접 추가로 이동
         btn_show_subadd.setOnClickListener {
             val intent = Intent(this, SubAdd::class.java)
+            intent.putExtra("intent_name", "직접 입력")
             startActivity(intent)
         }
 
