@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <!--activity_subchart.xml내에 위치한 리사이클러뷰 속 아이템들의 화면구성을
+    결정하는 xml파일-->
+
+    //이미지뷰를 둥글게 출력해줄 카드뷰
+    <androidx.cardview.widget.CardView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:cardCornerRadius="100dp">
+
+        //로고를 보여주는 이미지뷰
+
+        <ImageView
+            android:id="@+id/subLogoImgView"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/millie_logo" />
+
+    </androidx.cardview.widget.CardView>
+
+    //구독 서비스 이름을 보여주는 텍스트뷰
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="닌텐도 스위치 온라인"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    //구독 서비스의 추천태그를 보여주는 텍스트뷰
+
+    <TextView
+        android:id="@+id/subTag"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_weight="1"
+        android:text="#프로그램"
+        android:textAlignment="viewEnd"
+        android:textColor="#79B2BF"
+        android:textSize="12sp" />
+
+    //누르면 해당 서비스를 추가할 수 있도록 하는 이미지 버튼
+    <ImageButton
+        android:id="@+id/btnShowSubadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        android:layout_weight="1"
+        android:backgroundTint="#FFFFFF"
+        app:srcCompat="@drawable/ic_forward" />
+
+</LinearLayout>
