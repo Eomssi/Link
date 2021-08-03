@@ -8,7 +8,7 @@
 
 
     <ImageButton
-        android:id="@+id/btn_show_subself"
+        android:id="@+id/btn_show_subadd"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -44,7 +44,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/btn_show_subself"
+        app:layout_constraintEnd_toStartOf="@+id/btn_show_subadd"
         app:layout_constraintStart_toEndOf="@+id/btn_show_main2"
         app:layout_constraintTop_toTopOf="parent" />
 
