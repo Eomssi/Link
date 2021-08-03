@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,368 +9,399 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="60dp"
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/btnback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="91dp"
+            android:backgroundTint="#FFFFFF"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tlbname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/subLogo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/subLogo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="구독 서비스"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="18dp"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/ic_link"
+                            android:layout_marginLeft="5dp"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/edtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="8"
+                        android:hint="이름을 입력해 주세요."
+                        android:inputType="textPersonName"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginTop="16dp">
+                android:layout_weight="1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:text="최종 결제 금액"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosanscjkkr_bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edtPayment"
+                        android:layout_width="365dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="최종 결제 금액을 입력해 주세요."
+                        android:inputType="number"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="원"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="카테고리"
+                    android:paddingLeft="3dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosanscjkkr_bold"/>
+
+                <EditText
+                    android:id="@+id/edtCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="카테고리를 입력해 주세요. ex) OTT"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="첫 결제일"
+                    android:paddingLeft="3dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosanscjkkr_bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/payYY"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/year"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="년"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:id="@+id/payMM"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/month"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="월"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:id="@+id/payDD"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/day"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="일"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="결제 주기"
+                    android:paddingLeft="3dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosanscjkkr_bold"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/cycleYY"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/cycleY"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="년"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:id="@+id/cycleMM"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/cycleM"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="구독 서비스"
+                        android:text="개월"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textSize="12sp"/>
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="18dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/ic_link"
-                        android:layout_marginLeft="5dp"/>
+                    <Spinner
+                        android:id="@+id/cycleDD"
+                        android:layout_width="95dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/cycleD"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="일"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/notosanscjkkr_bold"
+                        android:text="마다"
+                        android:textColor="#77C6B6"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="다음 결제 알림"
+                    android:paddingLeft="3dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanscjkkr_bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/notiYY"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/year"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="년"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:id="@+id/notiMM"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/month"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="월"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
+
+                    <Spinner
+                        android:id="@+id/notiDD"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/day"/>
+
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="wrap_content"
+                        android:text="일"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/edtName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="8"
-                    android:hint="이름을 입력해 주세요."
-                    android:inputType="textPersonName"
-                    android:textSize="18sp" />
-
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="3dp"
-                android:text="최종 결제 금액"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:fontFamily="@font/notosanscjkkr_bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="메모"
+                    android:paddingLeft="3dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanscjkkr_bold"/>
 
                 <EditText
-                    android:id="@+id/edtPayment"
-                    android:layout_width="365dp"
+                    android:id="@+id/edtmemo"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_memoedt"/>
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="최종 결제 금액을 입력해 주세요."
-                    android:inputType="number"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="원"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="카테고리"
-                android:paddingLeft="3dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:fontFamily="@font/notosanscjkkr_bold"/>
-
-            <EditText
-                android:id="@+id/edtCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="카테고리를 입력해 주세요. ex) OTT"
-                android:textSize="12sp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="첫 결제일"
-                android:paddingLeft="3dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:fontFamily="@font/notosanscjkkr_bold"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/payYY"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/year"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="년"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/payMM"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/month"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="월"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/payDD"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/day"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="일"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="결제 주기"
-                android:paddingLeft="3dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:fontFamily="@font/notosanscjkkr_bold"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/cycleYY"
-                    android:layout_width="95dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/cycleY"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="년"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/cycleMM"
-                    android:layout_width="95dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/cycleM"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="개월"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/cycleDD"
-                    android:layout_width="95dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/cycleD"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="일"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_addbutton"
                     android:fontFamily="@font/notosanscjkkr_bold"
-                    android:text="마다"
-                    android:textColor="#77C6B6"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:text="추가하기"
+                    android:textSize="15sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="다음 결제 알림"
-                android:paddingLeft="3dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:fontFamily="@font/notosanscjkkr_bold"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/notiYY"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/year"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="년"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/notiMM"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/month"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="월"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-
-                <Spinner
-                    android:id="@+id/notiDD"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/day"/>
-
-                <TextView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    android:text="일"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+    </ScrollView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="메모"
-                android:paddingLeft="3dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:fontFamily="@font/notosanscjkkr_bold"/>
-
-            <EditText
-                android:id="@+id/edtmemo"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_memoedt"/>
-
-            <Button
-                android:id="@+id/btnAdd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_addbutton"
-                android:fontFamily="@font/notosanscjkkr_bold"
-                android:text="추가하기"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-</ScrollView>
+</LinearLayout>

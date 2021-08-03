@@ -4,10 +4,7 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import de.hdodenhof.circleimageview.CircleImageView
 
 class SubUpdate : AppCompatActivity() {
@@ -16,8 +13,9 @@ class SubUpdate : AppCompatActivity() {
     lateinit var sqlitedb: SQLiteDatabase
 
     //위젯 변수 선업
+    lateinit var btnback: ImageButton
     lateinit var btnAdd: Button
-    lateinit var edtName: EditText
+    lateinit var tvName: TextView
     lateinit var edtPayment: EditText
     lateinit var edtCategory: EditText
     lateinit var payYY: Spinner
@@ -39,8 +37,9 @@ class SubUpdate : AppCompatActivity() {
         setContentView(R.layout.activity_sub_update)
 
         //위젯 변수 연결
+        btnback = findViewById(R.id.btnback)
         btnAdd = findViewById(R.id.btnAdd)
-        edtName = findViewById(R.id.edtName)
+        tvName = findViewById(R.id.tvName)
         edtPayment = findViewById(R.id.edtPayment)
         edtCategory = findViewById(R.id.edtCategory)
         payYY = findViewById(R.id.payYY)
@@ -61,14 +60,21 @@ class SubUpdate : AppCompatActivity() {
         val intent = intent
         str_name = intent.getStringExtra("intent_name").toString()
 
+        //btnback 버튼 클릭 시 SubDetailDelete으로 이동
+        btnback.setOnClickListener {
+            val intent = Intent(this, SubDetailDelete::class.java)
+            intent.putExtra("intent_name", str_name)
+            startActivity(intent)
+        }
+
         //edtName칸에 넘겨받은 이름 띄우기
-        edtName.setText(str_name)
+        tvName.text = str_name
 
 
-        //수정하기 버튼을 눌렀을 때
+        //수정완료 버튼을 눌렀을 때
         btnAdd.setOnClickListener {
             //브랜드 이름
-            str_name = edtName.text.toString()
+            str_name = tvName.text.toString()
             //최종 결제 금액
             var str_payment: String = edtPayment.text.toString()
             //카테고리
@@ -104,7 +110,7 @@ class SubUpdate : AppCompatActivity() {
             sqlitedb.execSQL("UPDATE subaddDB SET memo = '"+ str_memo+ "' WHERE subName = '"+ str_name+ "';")
             sqlitedb.close()
 
-            //저장한 내용의 브랜드 이름을 메인 액티비티로 전달
+            //저장한 내용의 브랜드 이름을 MainActivity로 전달하면서 이동
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("intent_name", str_name)
             startActivity(intent)

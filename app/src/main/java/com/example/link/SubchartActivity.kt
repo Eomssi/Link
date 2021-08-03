@@ -11,6 +11,7 @@ class SubchartActivity : AppCompatActivity() {
 
 
     lateinit var btn_show_main2: ImageButton
+    lateinit var btn_show_subself: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,11 +19,20 @@ class SubchartActivity : AppCompatActivity() {
 
         //변수와 위젯을 연동
        btn_show_main2 = findViewById(R.id.btn_show_main2)
+        btn_show_subself = findViewById(R.id.btn_show_subself)
 
         //버튼 클릭 시 메인화면으로 이동
        btn_show_main2.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)}
+            startActivity(intent)
+       }
+
+        //버튼 클릭 시 직접 추가 화면(SubAdd)으로 이동
+       btn_show_subself.setOnClickListener{
+           val intent = Intent(this, SubAdd::class.java)
+           intent.putExtra("intent_name", "직접 입력")
+           startActivity(intent)
+       }
 
 
         /*------리사이클러뷰 관련 코드-------*/

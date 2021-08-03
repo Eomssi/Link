@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -22,6 +23,8 @@ class SubInfo : AppCompatActivity() {
     lateinit var subImage2: ImageView
 
     lateinit var btnSubadd: Button
+    lateinit var btnback: ImageButton
+    lateinit var tlbname: TextView
 
 
 
@@ -29,9 +32,8 @@ class SubInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_info)
 
-
-
         //화면 위 버튼 연결
+        btnback = findViewById(R.id.btnback)
         btnSubadd = findViewById(R.id.btnSubadd)
 
         //화면 위젯 연결
@@ -43,10 +45,20 @@ class SubInfo : AppCompatActivity() {
         textPayment = findViewById(R.id.textPayment)
         subImage1 = findViewById(R.id.subImage1)
         subImage2 = findViewById(R.id.subImage2)
+        tlbname = findViewById(R.id.tlbname)
 
         //구독 서비스 액티비티에서 전달 된 데이터 받음
         val intent = intent
         var str_name = intent.getStringExtra("intent_name").toString()  //str_name: 구독리스트에서 클릭한 브랜드 이름
+
+        //btnback 버튼 클릭 시 구독 리스트(SubchartActivity)으로 이동
+        btnback.setOnClickListener {
+            val intent = Intent(this, SubchartActivity::class.java)
+            startActivity(intent)
+        }
+
+        //상단 텍스트뷰에 구독리스트에서 전달받은 브랜드 이름 출력
+        tlbname.text = str_name
 
         //서비스 추가 버튼 클릭 시 SubAdd 액티비티로 이동
         btnSubadd.setOnClickListener {

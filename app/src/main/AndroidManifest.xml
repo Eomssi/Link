@@ -9,15 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Link">
         <activity android:name=".SubUpdate" />
-        <activity
-            android:name=".SubDetailDelete"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".SubAdd"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".SubInfo"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".SubDetailDelete"/>
+        <activity android:name=".SubAdd"/>
+        <activity android:name=".SubInfo"/>
         <activity android:name=".MoneydetailActivity"></activity>
         <activity android:name=".SubchartActivity" />
         <activity android:name=".LoadingActivity">

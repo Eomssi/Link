@@ -53,5 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         txt_month.setText(mFormatted)
         txt_MMdd.setText(mmddFormatted)
+
     }
 }

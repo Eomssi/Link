@@ -4,10 +4,7 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -33,6 +30,8 @@ class SubAdd : AppCompatActivity() {
     lateinit var notiMM: Spinner
     lateinit var notiDD: Spinner
     lateinit var edtmemo: EditText
+    lateinit var tlbname: TextView
+    lateinit var btnback: ImageButton
 
     //DB에서 받는 정보 변수
     lateinit var str_name: String
@@ -57,13 +56,28 @@ class SubAdd : AppCompatActivity() {
         notiMM = findViewById(R.id.notiMM)
         notiDD = findViewById(R.id.notiDD)
         edtmemo = findViewById(R.id.edtmemo)
+        tlbname = findViewById(R.id.tlbname)
+        btnback = findViewById(R.id.btnback)
 
-        //DB연결
-        dbManager = DBManager(this, "subaddDB", null, 1)
 
         //서비스 소개 액티비티에서 전달 된 데이터 받음
         val intent = intent
         str_name = intent.getStringExtra("intent_name").toString()
+
+        //btnback 버튼 클릭 시 구독 리스트(SubchartActivity)으로 이동
+        btnback.setOnClickListener {
+            val intent = Intent(this, SubchartActivity::class.java)
+            startActivity(intent)
+        }
+
+        //상단 텍스트뷰에 구독리스트에서 전달받은 브랜드 이름 출력
+        tlbname.text = str_name
+
+        //DB연결
+        dbManager = DBManager(this, "subaddDB", null, 1)
+
+        //상단에 전달받은 이름 표시
+        tlbname.text = str_name
 
         when{
             str_name == "네이버 플러스" -> {
@@ -162,7 +176,7 @@ class SubAdd : AppCompatActivity() {
             str_name == "플로" -> {
                 subLogo.setImageResource(R.drawable.flo_logo)
             }
-            str_name == "직접 추가" -> {
+            str_name == "직접 입력" -> {
                 subLogo.setImageResource(R.drawable.ic_basicimage)
             }
         }

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 
@@ -30,6 +31,7 @@ class SubDetailDelete : AppCompatActivity() {
     lateinit var notiMM: TextView
     lateinit var notiDD: TextView
     lateinit var tvmemo: TextView
+    lateinit var btnback: ImageButton
 
     //lateinit var str_name: String
 
@@ -54,10 +56,17 @@ class SubDetailDelete : AppCompatActivity() {
         notiMM = findViewById(R.id.notiMM)
         notiDD = findViewById(R.id.notiDD)
         tvmemo = findViewById(R.id.tvmemo)
+        btnback = findViewById(R.id.btnback)
 
         //입력 했던 구독 정보 출력하기
         val intent = intent
         var str_name = intent.getStringExtra("intent_name").toString()
+
+        //btnback 버튼 클릭 시 메인으로(MainActivity)으로 이동
+        btnback.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         //DB연결
         dbManager = DBManager(this, "subaddDB", null, 1)
@@ -104,7 +113,7 @@ class SubDetailDelete : AppCompatActivity() {
         sqlitedb.close()
         dbManager.close()
 
-        //수정하기 버튼을 눌렀을 때
+        //수정하기 버튼을 눌렀을 때 SubUpdate 액티비티로 이동
         btnUpdate.setOnClickListener {
             //SubUpdate 액티비티로 이동
             val intent = Intent(this, SubUpdate::class.java)
