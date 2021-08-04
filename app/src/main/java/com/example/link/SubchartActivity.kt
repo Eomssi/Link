@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,6 +12,7 @@ class SubchartActivity : AppCompatActivity() {
 
     lateinit var btn_show_main2: ImageButton
     lateinit var btn_show_subadd: ImageButton
+    lateinit var recycler_view: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class SubchartActivity : AppCompatActivity() {
         /*------리사이클러뷰 관련 코드-------*/
 
         //xml파일 속 리사이클러뷰 위젯을 변수 선언 및 위젯 연결
-        val recycler_view = findViewById<RecyclerView>(R.id.recycler_view)
+        recycler_view = findViewById<RecyclerView>(R.id.recycler_view)
 
         //리사이클러뷰에 내가 만들어놓은 어댑터 연결
         val mAdapter = RcviewAdapter(this, subDataList) {SubData ->

@@ -9,19 +9,19 @@
     <!--activity_subchart.xml내에 위치한 리사이클러뷰 속 아이템들의 화면구성을
     결정하는 xml파일-->
 
-    //이미지뷰를 둥글게 출력해줄 카드뷰
 
-    //구독 서비스 이름을 보여주는 텍스트뷰
+    //둥글게 구독 서비스 로고를 보여줄 써클이미지뷰
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/subLogoImgView"
+        android:id="@+id/mLogoImgView"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_margin="16dp" />
 
+    //구독 서비스 이름을 보여주는 텍스트뷰
     <TextView
-        android:id="@+id/subTitle"
+        android:id="@+id/mSubTitle"
         android:layout_width="124dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

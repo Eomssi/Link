@@ -96,7 +96,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/mTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/txt_total"
@@ -109,8 +109,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/textView3"
-                android:layout_toRightOf="@id/textView3"
+                android:layout_alignBottom="@id/mTxt"
+                android:layout_toRightOf="@id/mTxt"
                 android:text="  입니다."
                 android:textColor="#E7F2EF"
                 android:textSize="18sp" />
@@ -238,11 +238,11 @@
         app:layout_constraintVertical_bias="0.993">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcView_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    //android:progressDrawable="@drawable/progressbar_background"
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

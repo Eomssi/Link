@@ -1,13 +1,10 @@
 package com.example.link
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -35,8 +32,8 @@ class RcviewAdapter(val context: Context, val subDataList: ArrayList<SubData>, v
     //아이템뷰를 저장하는 뷰홀더 클래스
     inner class Holder(itemView: View?, val itemClick: (SubData)-> Unit) : RecyclerView.ViewHolder(itemView!!) {
 
-        val subLogoImg1 = itemView?.findViewById<CircleImageView>(R.id.subLogoImgView)
-        val subTitle = itemView?.findViewById<TextView>(R.id.subTitle)
+        val subLogoImg1 = itemView?.findViewById<CircleImageView>(R.id.mLogoImgView)
+        val subTitle = itemView?.findViewById<TextView>(R.id.mSubTitle)
         val subTag = itemView?.findViewById<TextView>(R.id.subTag)
 
         //뷰홀더에 각 데이터를 입력하는 함수

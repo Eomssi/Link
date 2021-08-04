@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:divider="@drawable/afreecatv_logo"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    //둥글게 구독 서비스 로고를 보여줄 써클이미지뷰
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/mLogoImgView"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:layout_margin="16dp" />
+
+    //구독 서비스 이름을 보여주는 텍스트뷰
+<TextView
+android:id="@+id/mSubTitle"
+android:layout_width="135dp"
+android:layout_height="wrap_content"
+android:layout_gravity="center|left"
+android:layout_weight="1"
+android:text="닌텐도 스위치 온라인"
+android:textColor="#000000"
+android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/ic_link" />
+
+<TextView
+android:id="@+id/mSubPayment"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="TextView"
+android:textStyle="bold"
+tools:text="10000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="원"
+        android:textStyle="bold" />
+
+
+    </LinearLayout>

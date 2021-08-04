@@ -7,7 +7,8 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import java.time.LocalDate
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btn_show_mndetail: ImageButton
     lateinit var txt_month: TextView
     lateinit var txt_MMdd: TextView
+    lateinit var mRecycler_view: RecyclerView
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -54,5 +56,38 @@ class MainActivity : AppCompatActivity() {
         txt_month.setText(mFormatted)
         txt_MMdd.setText(mmddFormatted)
 
+
+        /*------리사이클러뷰 관련 코드-------*/
+
+        //xml파일 속 리사이클러뷰 위젯을 변수 선언 및 위젯 연결
+        mRecycler_view = findViewById<RecyclerView>(R.id.rcView_main)
+
+        //리사이클러뷰에 내가 만들어놓은 어댑터 연결
+        val mAdapter = MainAdapter(this, mainSubDataList) {MainSubData ->
+            /*var str_name = intent.getStringExtra("title_str").toString()
+             val intent = Intent(this, SubInfo::class.java)
+             intent.putExtra("intent_name", str_name)
+             startActivity(intent)*/
+            var str_name = MainSubData.subTitle
+            val intent = Intent(this, SubDetailDelete::class.java)
+            intent.putExtra("intent_name", str_name)
+            startActivity(intent)
+        }
+        mRecycler_view.adapter = mAdapter
+
+        //리사이클러뷰에 LinearLayoutManager(아이템뷰를 배치시키는 역할) 객체 지정.
+        val lm = LinearLayoutManager(this)
+        mRecycler_view.layoutManager = lm
+
+        mRecycler_view.setHasFixedSize(true) //사이즈 고정
+
     }
+
+    var mainSubDataList = arrayListOf<MainSubData>(
+        MainSubData("naverplus_logo", "네이버 플러스", 9500),
+        MainSubData("netflix_logo", "넷플릭스", 3250),
+        MainSubData("notion_logo", "노션", 5440),
+        MainSubData("nintendoswitch_logo", "닌텐도 스위치 온라인", 9900)
+
+    )
 }
