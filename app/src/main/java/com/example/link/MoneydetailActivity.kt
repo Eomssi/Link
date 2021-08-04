@@ -89,11 +89,12 @@ class MoneydetailActivity : AppCompatActivity() {
 
         //예산 금액 '입력' 버튼을 눌렀을 때
         btn_set_budget.setOnClickListener {
-            saveData(txt_budget.text.toString().toInt(),
-            txt_budget2.text.toString().toInt())
-
             txt_budget.text = edtxt_set_budget.text
             txt_budget2.text = edtxt_set_budget.text
+
+            saveData(txt_budget.text.toString().toInt(),
+                txt_budget2.text.toString().toInt(),
+                edtxt_set_budget.text.toString().toInt())
 
         }
 
@@ -125,12 +126,13 @@ class MoneydetailActivity : AppCompatActivity() {
     }
 
     //예산 데이터 저장
-    private fun saveData(budget1: Int,budget2: Int){
+    private fun saveData(budget1: Int,budget2: Int, budget3:Int){
         var pref = this.getPreferences(0)
         var editor = pref.edit()
 
         editor.putInt("KEY_BUDGET1", txt_budget.text.toString().toInt()).apply()
         editor.putInt("KEY_BUDGET2", txt_budget2.text.toString().toInt()).apply()
+        editor.putInt("KEY_BUDGET3", edtxt_set_budget.text.toString().toInt()).apply()
 
     }
 
@@ -139,10 +141,13 @@ class MoneydetailActivity : AppCompatActivity() {
         var pref = this.getPreferences(0)
         var budget1 = pref.getInt("KEY_BUDGET1", 0)
         var budget2 = pref.getInt("KEY_BUDGET2", 0)
+        var budget3 = pref.getInt("KEY_BUDGET3", 0)
 
-        if(budget1 !=0 && budget2 !=0){
+
+        if(budget1 !=0 && budget2 !=0 && budget2 !=0){
             txt_budget.setText(budget1.toString())
             txt_budget2.setText(budget2.toString())
+            edtxt_set_budget.setText(budget3.toString())
         }
     }
 
