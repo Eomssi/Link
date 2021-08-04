@@ -103,7 +103,9 @@
                     android:paddingRight="16dp"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:linksClickable="true"
+                    android:autoLink="web" />
 
             </LinearLayout>
 

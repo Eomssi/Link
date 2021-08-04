@@ -78,7 +78,7 @@ class SubchartActivity : AppCompatActivity() {
         SubData("slack_logo", "슬랙", "#프로그램"),
         SubData("seezn_logo", "시즌", "#ott"),
         SubData("socar_logo", "쏘카", "#기타"),
-        SubData("afreecatv_logo", "아프리카TV", "#게임"),
+        SubData("afreecatv_logo", "아프리카 TV", "#게임"),
         SubData("applemusic_logo", "애플뮤직", "#음악"),
         SubData("adobecloud_logo", "어도비 클라우드", "#프로그램"),
         SubData("evernote_logo", "에버노트", "#프로그램"),
