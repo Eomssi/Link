@@ -51,10 +51,16 @@ class RcviewAdapter(val context: Context, val subDataList: ArrayList<SubData>, v
             subTitle?.text = subData.subTitle
             subTag?.text = subData.subTag
 
+            val pos = adapterPosition
 
-            itemView.setOnClickListener {
-                itemClick(subData)
+            if(pos != RecyclerView.NO_POSITION) {
+                itemView.setOnClickListener {
+                    itemClick(subData)
+                }
             }
+           /*itemView.setOnClickListener {
+                itemClick(subData)
+            }*/
         }
     }
 
