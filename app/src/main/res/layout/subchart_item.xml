@@ -10,25 +10,16 @@
     결정하는 xml파일-->
 
     //이미지뷰를 둥글게 출력해줄 카드뷰
-    <androidx.cardview.widget.CardView
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:cardCornerRadius="100dp">
-
-        //로고를 보여주는 이미지뷰
-
-        <ImageView
-            android:id="@+id/subLogoImgView"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/millie_logo" />
-
-    </androidx.cardview.widget.CardView>
 
     //구독 서비스 이름을 보여주는 텍스트뷰
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/subLogoImgView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp" />
+
     <TextView
         android:id="@+id/subTitle"
         android:layout_width="124dp"

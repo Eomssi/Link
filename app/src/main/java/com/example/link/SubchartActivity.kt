@@ -62,7 +62,7 @@ class SubchartActivity : AppCompatActivity() {
         SubData("netflix_logo", "넷플릭스", "#ott"),
         SubData("notion_logo", "노션", "#프로그램"),
         SubData("nintendoswitch_logo", "닌텐도 스위치 온라인", "#게임"),
-        SubData("dropbax_logo", "드롭박스", "#프로그램"),
+        SubData("dropbox_logo", "드롭박스", "#프로그램"),
         SubData("rocketwow_logo", "로켓와우", "#쇼핑"),
         SubData("ridi_logo", "리디 설렉트", "#독서"),
         SubData("melon_logo", "멜론", "#음악"),
