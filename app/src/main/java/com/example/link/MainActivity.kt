@@ -23,12 +23,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var txt_month: TextView
     lateinit var txt_MMdd: TextView
     lateinit var mRecycler_view: RecyclerView
+    lateinit var txt_total: TextView
 
     //DB 변수 선언
     lateinit var dbManager: DBManager
     lateinit var sqlitedb: SQLiteDatabase
 
-    lateinit var name: String
+    //총 결제 금액 변수
+    var total_payment: Int = 0
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         btn_show_mndetail = findViewById<ImageButton>(R.id.btn_show_mndetail)
         txt_month = findViewById<TextView>(R.id.txt_month)
         txt_MMdd = findViewById<TextView>(R.id.txt_MMdd)
+        txt_total = findViewById(R.id.txt_total)
 
         //DB 연동
         dbManager = DBManager(this, "subaddDB", null, 1)
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         //버튼 클릭 시 예산분석 화면으로 전환
         btn_show_mndetail.setOnClickListener {
             val intent = Intent(this, MoneydetailActivity::class.java)
+            intent.putExtra("intent_total_payment", total_payment)
             startActivity(intent)
         }
 
@@ -95,15 +99,24 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        //DB 커서
+        //DB 커서 선언
         var cursor: Cursor
-        cursor = sqlitedb.rawQuery("SELECT * FROM subaddDB;", null)
 
+        //subaddDB의 payment 데이터 총합 조회, txt_total 창에 띄우기
+        cursor = sqlitedb.rawQuery("SELECT SUM(payment) FROM subaddDB;", null)
+        while(cursor.moveToNext()) {
+            var total_payment = cursor.getInt(cursor.getColumnIndex("SUM(payment)"))
+            txt_total.text = total_payment.toString()
+        }
+
+        //subaddDB 컬럼 모두 조회
+        cursor = sqlitedb.rawQuery("SELECT * FROM subaddDB;", null)
         while(cursor.moveToNext()) {
             var str_name = cursor.getString(cursor.getColumnIndex("subName")).toString()
             var payment = cursor.getInt(cursor.getColumnIndex("payment"))
-            var logo: String
 
+            //로고 설정, str_name에 따라 로고 이미지 변경
+            var logo: String
             when{
                 str_name == "네이버 플러스" -> {
                     logo = "naverplus_logo"
@@ -209,10 +222,11 @@ class MainActivity : AppCompatActivity() {
             //subaddDB에서 받은 내용 mainSubDataList 배열에 추가
             var mSubData = MainSubData(logo, str_name, payment)
             mainSubDataList.add(mSubData)
-
+            //어댑터에 초기화 요청
             mAdapter.notifyDataSetChanged()
         }
 
+        //커서 및 DB 닫기
         cursor.close()
         sqlitedb.close()
         dbManager.close()
