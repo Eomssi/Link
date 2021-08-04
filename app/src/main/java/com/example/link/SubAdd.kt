@@ -211,7 +211,7 @@ class SubAdd : AppCompatActivity() {
 
             //저장한 내용의 브랜드 이름을 메인 액티비티로 전달
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("intent_name", str_name)
+            //intent.putExtra("intent_name", str_name)
             startActivity(intent)
 
             //토스트 메시지 출력

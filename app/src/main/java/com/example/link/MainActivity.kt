@@ -1,6 +1,8 @@
 package com.example.link
 
 import android.content.Intent
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +24,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var txt_MMdd: TextView
     lateinit var mRecycler_view: RecyclerView
 
+    //DB 변수 선언
+    lateinit var dbManager: DBManager
+    lateinit var sqlitedb: SQLiteDatabase
+
+    lateinit var name: String
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         btn_show_mndetail = findViewById<ImageButton>(R.id.btn_show_mndetail)
         txt_month = findViewById<TextView>(R.id.txt_month)
         txt_MMdd = findViewById<TextView>(R.id.txt_MMdd)
+
+        //DB 연동
+        dbManager = DBManager(this, "subaddDB", null, 1)
+        sqlitedb = dbManager.readableDatabase   //읽기
 
         //버튼 클릭 시 구독서비스등록 화면으로 전환
         btn_show_subchart.setOnClickListener {
@@ -81,13 +93,136 @@ class MainActivity : AppCompatActivity() {
 
         mRecycler_view.setHasFixedSize(true) //사이즈 고정
 
+
+
+        //DB 커서
+        var cursor: Cursor
+        cursor = sqlitedb.rawQuery("SELECT * FROM subaddDB;", null)
+
+        while(cursor.moveToNext()) {
+            var str_name = cursor.getString(cursor.getColumnIndex("subName")).toString()
+            var payment = cursor.getInt(cursor.getColumnIndex("payment"))
+            var logo: String
+
+            when{
+                str_name == "네이버 플러스" -> {
+                    logo = "naverplus_logo"
+                }
+                str_name == "넷플릭스" -> {
+                    logo = "netflix_logo"
+                }
+                str_name == "노션" -> {
+                    logo = "notion_logo"
+                }
+                str_name == "닌텐도 스위치 온라인" -> {
+                    logo = "nintendoswich_logo"
+                }
+                str_name == "드롭박스" -> {
+                    logo = "dropbox_logo"
+                }
+                str_name == "로켓와우" -> {
+                    logo = "rocketwow_logo"
+                }
+                str_name == "리디 셀렉트" -> {
+                    logo = "ridi_logo"
+                }
+                str_name == "멜론" -> {
+                    logo = "melon_logo"
+                }
+                str_name == "밀리의 서재" -> {
+                    logo = "millie_logo"
+                }
+                str_name == "바이브" -> {
+                    logo = "vibe_logo"
+                }
+                str_name == "벅스" -> {
+                    logo = "bugs_logo"
+                }
+                str_name == "스마일클럽" -> {
+                    logo = "smileclub_logo"
+                }
+                str_name == "스포티파이" -> {
+                    logo = "spotify_logo"
+                }
+                str_name == "슬랙" -> {
+                    logo = "slack_logo"
+                }
+                str_name == "시즌" -> {
+                    logo = "seezn_logo"
+                }
+                str_name == "쏘카" -> {
+                    logo = "socar_logo"
+                }
+                str_name == "아프리카 TV" -> {
+                    logo = "afreecatv_logo"
+                }
+                str_name == "애플뮤직" -> {
+                    logo = "applemusic_logo"
+                }
+                str_name == "어도비 클라우드" -> {
+                    logo = "adobecloud_logo"
+                }
+                str_name == "에버노트" -> {
+                    logo = "evernote_logo"
+                }
+                str_name == "예스24 북클럽" -> {
+                    logo = "yes24bookclub_logo"
+                }
+                str_name == "왓챠" -> {
+                    logo = "watcha_logo"
+                }
+                str_name == "웨이브" -> {
+                    logo = "wavve_logo"
+                }
+                str_name == "윌라" -> {
+                    logo = "welaaa_logo"
+                }
+                str_name == "유튜브 프리미엄" -> {
+                    logo = "youtube_logo"
+                }
+                str_name == "지니뮤직" -> {
+                    logo = "genie_logo"
+                }
+                str_name == "트라이브" -> {
+                    logo = "trive_logo"
+                }
+                str_name == "트위치" -> {
+                    logo = "twitch_logo"
+                }
+                str_name == "티빙" -> {
+                    logo = "tving_logo"
+                }
+                str_name == "팟빵" -> {
+                    logo = "podbbang_logo"
+                }
+                str_name == "플레이스테이션 플러스" -> {
+                    logo = "playstation_logo"
+                }
+                str_name == "플로" -> {
+                    logo = "flo_logo"
+                }
+                else -> {
+                    logo = "ic_basicimage"
+                }
+            }
+
+            //subaddDB에서 받은 내용 mainSubDataList 배열에 추가
+            var mSubData = MainSubData(logo, str_name, payment)
+            mainSubDataList.add(mSubData)
+
+            mAdapter.notifyDataSetChanged()
+        }
+
+        cursor.close()
+        sqlitedb.close()
+        dbManager.close()
+
+
     }
 
+    //임의로 설정
     var mainSubDataList = arrayListOf<MainSubData>(
-        MainSubData("naverplus_logo", "네이버 플러스", 9500),
-        MainSubData("netflix_logo", "넷플릭스", 3250),
-        MainSubData("notion_logo", "노션", 5440),
-        MainSubData("nintendoswitch_logo", "닌텐도 스위치 온라인", 9900)
+
 
     )
 }
