@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         //버튼 클릭 시 예산분석 화면으로 전환
         btn_show_mndetail.setOnClickListener {
             val intent = Intent(this, MoneydetailActivity::class.java)
-            intent.putExtra("intent_total_payment", total_payment)
+            //intent.putExtra("intent_total_payment", total_payment)
             startActivity(intent)
         }
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         //subaddDB의 payment 데이터 총합 조회, txt_total 창에 띄우기
         cursor = sqlitedb.rawQuery("SELECT SUM(payment) FROM subaddDB;", null)
         while(cursor.moveToNext()) {
-            var total_payment = cursor.getInt(cursor.getColumnIndex("SUM(payment)"))
+            total_payment = cursor.getInt(cursor.getColumnIndex("SUM(payment)"))
             txt_total.text = total_payment.toString()
         }
 
@@ -234,9 +234,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //임의로 설정
+    //mainSubData가 들어가는 리스트
     var mainSubDataList = arrayListOf<MainSubData>(
-
 
     )
 }

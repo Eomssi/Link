@@ -12,7 +12,7 @@ class DBManager(
 ) : SQLiteOpenHelper(context, name, factory, version) {
     override fun onCreate(db: SQLiteDatabase?) {
         //subaddDB 테이블 생성
-        db!!.execSQL("CREATE TABLE subaddDB (subName TEXT PRIMARY KEY, payment INTEGER, subCategory TEXT, payDateYY INTEGER, payDateMM INTEGER, payDateDD INTEGER, payCycleYY INTEGER, payCycleMM INTEGER, payCycleDD INTEGER, notiYY INTEGER, notiMM INTEGER, notiDD INTEGER, memo TEXT)")
+        db!!.execSQL("CREATE TABLE subaddDB (subName TEXT PRIMARY KEY, payment INTEGER, subCategory TEXT, payDateYY INTEGER, payDateMM INTEGER, payDateDD INTEGER, payCycleYY INTEGER, payCycleMM INTEGER, payCycleDD INTEGER, notiYY INTEGER, notiMM INTEGER, notiDD INTEGER, memo TEXT);")
 
     }
 

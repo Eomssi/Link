@@ -1,6 +1,8 @@
 package com.example.link
 
 import android.content.Intent
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +29,13 @@ class MoneydetailActivity : AppCompatActivity() {
     lateinit var textView_5:TextView
     lateinit var txt_budget: TextView
     lateinit var txt_budget2: TextView
+    lateinit var txt_total2: TextView
+
+    //DB 변수 선언
+    lateinit var dbManager: DBManager
+    lateinit var sqlitedb: SQLiteDatabase
+    var total_payment: Int = 0
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +52,10 @@ class MoneydetailActivity : AppCompatActivity() {
         textView_5 = findViewById<TextView>(R.id.textView_5)
         txt_budget = findViewById(R.id.txt_budget)
         txt_budget2 = findViewById(R.id.txt_budget2)
+        txt_total2 = findViewById(R.id.txt_total2)
+
+        //설정한 예산 불러오기
+        loadData()
 
         //버튼 클릭 시 구독서비스등록 화면으로 이동
         btn_plus.setOnClickListener {
@@ -74,11 +87,33 @@ class MoneydetailActivity : AppCompatActivity() {
             }
         }
 
-        //쿼리문으로 수정 필요
+        //예산 금액 '입력' 버튼을 눌렀을 때
         btn_set_budget.setOnClickListener {
-            txt_budget.text=edtxt_set_budget.getText()
-            txt_budget2.setText(edtxt_set_budget.getText())
+            saveData(txt_budget.text.toString().toInt(),
+            txt_budget2.text.toString().toInt())
+
+            txt_budget.text = edtxt_set_budget.text
+            txt_budget2.text = edtxt_set_budget.text
+
         }
+
+        //subaddDB 연동
+        dbManager = DBManager(this, "subaddDB", null, 1)
+
+        //subaddDB의 payment 데이터 총합(현재까지 결제한 총 금액) 조회, txt_total2 창에 출력
+        sqlitedb = dbManager.readableDatabase   //읽기
+        var cursor: Cursor      //커서 선언
+        //payment의 총합 조회
+        cursor = sqlitedb.rawQuery("SELECT SUM(payment) FROM subaddDB;", null)
+        while(cursor.moveToNext()) {
+            total_payment = cursor.getInt(cursor.getColumnIndex("SUM(payment)"))
+            txt_total2.text = total_payment.toString()
+        }
+
+        //커서 닫기
+        cursor.close()
+        sqlitedb.close()
+        dbManager.close()
 
         //"M월 예산"부분 출력 위해 현재 몇 달인지 M 불러오기
         val current = LocalDateTime.now()
@@ -88,4 +123,27 @@ class MoneydetailActivity : AppCompatActivity() {
         txt_month2.setText(mFormatted) //지정해놓은 형식으로 텍스트 입력
 
     }
+
+    //예산 데이터 저장
+    private fun saveData(budget1: Int,budget2: Int){
+        var pref = this.getPreferences(0)
+        var editor = pref.edit()
+
+        editor.putInt("KEY_BUDGET1", txt_budget.text.toString().toInt()).apply()
+        editor.putInt("KEY_BUDGET2", txt_budget2.text.toString().toInt()).apply()
+
+    }
+
+    //예산 데이터 불러오기
+    private fun loadData() {
+        var pref = this.getPreferences(0)
+        var budget1 = pref.getInt("KEY_BUDGET1", 0)
+        var budget2 = pref.getInt("KEY_BUDGET2", 0)
+
+        if(budget1 !=0 && budget2 !=0){
+            txt_budget.setText(budget1.toString())
+            txt_budget2.setText(budget2.toString())
+        }
+    }
+
 }

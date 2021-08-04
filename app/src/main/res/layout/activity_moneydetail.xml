@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_month2"
                 android:layout_alignLeft="@id/txt_month2"
-                android:text="50000"
+                android:text="0"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/textView_2"
                 android:layout_toRightOf="@id/textView_2"
-                android:text="50000"
+                android:text="0"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -185,7 +185,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/textView_3"
                 android:layout_toRightOf="@id/textView_3"
-                android:text="27500"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -249,7 +248,7 @@
         android:layout_width="63dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:text="변경"
+        android:text="입력"
         android:textColor="#77C6B6"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
