@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import de.hdodenhof.circleimageview.CircleImageView
 
+/*-------- 구독 서비스 등록창에서 구독서비스를 눌렀을 때 서비스 관련 정보가 뜨는 정보창 ---------*/
 class SubInfo : AppCompatActivity() {
 
     //위젯 변수 선언
@@ -21,7 +22,6 @@ class SubInfo : AppCompatActivity() {
     lateinit var subLogo: CircleImageView
     lateinit var subImage1: ImageView
     lateinit var subImage2: ImageView
-
     lateinit var btnSubadd: Button
     lateinit var btnback: ImageButton
     lateinit var tlbname: TextView

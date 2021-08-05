@@ -13,7 +13,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-
+/*-------- 메인에서 결제금액이 나온 뷰 속 버튼을 클릭하면 나오는 결제분석창 ---------*/
 class MoneydetailActivity : AppCompatActivity() {
 
     //xml파일에서 사용한 변수 선언

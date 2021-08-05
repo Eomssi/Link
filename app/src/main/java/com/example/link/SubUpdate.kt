@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.*
 import de.hdodenhof.circleimageview.CircleImageView
 
+/*-------- 상세정보창에서 수정을 누르면 뜨는 수정창 ---------*/
 class SubUpdate : AppCompatActivity() {
     //DB 변수 선언
     lateinit var dbManager: DBManager

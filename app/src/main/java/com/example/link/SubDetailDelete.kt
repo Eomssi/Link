@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 
+/*-------- 구독중에 있는 서비스를 클릭했을 때 뜨는 상세정보창 ---------*/
 class SubDetailDelete : AppCompatActivity() {
     //DB 변수 선언
     lateinit var dbManager: DBManager

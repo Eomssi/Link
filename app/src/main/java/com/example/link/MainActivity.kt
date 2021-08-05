@@ -15,6 +15,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+/*-------- 로딩 화면 뒤 메인 화면 ---------*/
 class MainActivity : AppCompatActivity() {
 
     //xml파일에서 사용한 위젯을 위한 변수 선언
@@ -62,27 +63,33 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val current = LocalDateTime.now()
+
+        /*------날짜 출력 관련 코드------*/
+        val current = LocalDateTime.now() //현재 시간 불러오기
+
+        //"8월"에서 8을 08이 아닌 8로 출력하기 위한 형식 M 결정
         val mFormatter = DateTimeFormatter.ofPattern("M", Locale("ko", "kr"))
         val mFormatted = current.format(mFormatter)
 
+        //"08/05"에서 08을 8이 아닌 08로 출력하기 위한 형식 MM, dd 결정
         val mmddFormatter = DateTimeFormatter.ofPattern("MM/dd", Locale("ko", "kr"))
         val mmddFormatted = current.format(mmddFormatter)
 
-        txt_month.setText(mFormatted)
-        txt_MMdd.setText(mmddFormatted)
+        txt_month.text = mFormatted //TextView에 날짜 대입
+        txt_MMdd.text = mmddFormatted //TextView에 날짜 대입
 
 
         /*------리사이클러뷰 관련 코드-------*/
 
-        //xml파일 속 리사이클러뷰 위젯을 변수 선언 및 위젯 연결
+        //변수에 activity.xml파일 속 리사이클러뷰 위젯 연결
         mRecycler_view = findViewById<RecyclerView>(R.id.rcView_main)
 
         //리사이클러뷰에 내가 만들어놓은 어댑터 연결
         val mAdapter = MainAdapter(this, mainSubDataList) {MainSubData ->
-
             var str_name = MainSubData.subTitle
             val intent = Intent(this, SubDetailDelete::class.java)
+
+            //아이템뷰를 눌렀을 때 상세정보창에 구독중인 서비스 이름을 같이 전달
             intent.putExtra("intent_name", str_name)
             startActivity(intent)
         }

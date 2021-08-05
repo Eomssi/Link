@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import de.hdodenhof.circleimageview.CircleImageView
 
+/*-------- 구독중인 서비스를 추가하는 추가창 ---------*/
 class SubAdd : AppCompatActivity() {
 
     //DB 변수 선언

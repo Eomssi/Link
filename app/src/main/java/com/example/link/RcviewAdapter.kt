@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 
-/*activity_subchart.xml과 subChart_item.xml을 연결시켜주는 adapter를 구현하는 파일*/
-
+/*activity_subchart.xml 내 RecyclerView에 표시 될 아이템 뷰를 생성하는 adapter를 구현한 파일
+* 아이템을 생성하고 들어갈 데이터를 저장한다.*/
 class RcviewAdapter(val context: Context, val subDataList: ArrayList<SubData>, val itemClick: (SubData)-> Unit) :
     RecyclerView.Adapter<RcviewAdapter.Holder>() {
 
@@ -48,6 +48,7 @@ class RcviewAdapter(val context: Context, val subDataList: ArrayList<SubData>, v
             subTitle?.text = subData.subTitle
             subTag?.text = subData.subTag
 
+            //아이템뷰를 클릭했을 때 이벤트 처리 및 데이터 전달
             val pos = adapterPosition
 
             if(pos != RecyclerView.NO_POSITION) {
@@ -55,9 +56,6 @@ class RcviewAdapter(val context: Context, val subDataList: ArrayList<SubData>, v
                     itemClick(subData)
                 }
             }
-           /*itemView.setOnClickListener {
-                itemClick(subData)
-            }*/
         }
     }
 

@@ -7,9 +7,10 @@ import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+/*-------- 구독할만한 서비스 목록을 띄우는 구독 서비스 등록창 ---------*/
 class SubchartActivity : AppCompatActivity() {
 
-
+    //xml파일에서 사용한 위젯을 위한 변수 선언
     lateinit var btn_show_main2: ImageButton
     lateinit var btn_show_subadd: ImageButton
     lateinit var recycler_view: RecyclerView
