@@ -1,6 +1,7 @@
 package com.example.link
 
 import android.content.Intent
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +15,7 @@ class SubAdd : AppCompatActivity() {
     lateinit var dbManager: DBManager
     lateinit var sqlitedb: SQLiteDatabase
 
-    //위젯 변수 선업
+    //위젯 변수 선언
     lateinit var btnAdd: Button
     lateinit var subLogo: CircleImageView
     lateinit var edtName: EditText
@@ -59,7 +60,6 @@ class SubAdd : AppCompatActivity() {
         tlbname = findViewById(R.id.tlbname)
         btnback = findViewById(R.id.btnback)
 
-
         //서비스 소개 액티비티에서 전달 된 데이터 받음
         val intent = intent
         str_name = intent.getStringExtra("intent_name").toString()
@@ -70,14 +70,11 @@ class SubAdd : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //상단 텍스트뷰에 구독리스트에서 전달받은 브랜드 이름 출력
+        //상단 텍스트뷰에 구독리스트에서 전달받은 구독 서비스 이름 출력
         tlbname.text = str_name
 
-        //DB연결
+        //subaddDB DB연결
         dbManager = DBManager(this, "subaddDB", null, 1)
-
-        //상단에 전달받은 이름 표시
-        tlbname.text = str_name
 
         when{
             str_name == "네이버 플러스" -> {
@@ -204,10 +201,16 @@ class SubAdd : AppCompatActivity() {
             //메모
             var str_memo: String = edtmemo.text.toString()
 
-            //DB에 쓰기, subaddDB에 내용 저장하기, DB 닫기
-            sqlitedb = dbManager.writableDatabase
-            sqlitedb.execSQL("INSERT INTO subaddDB VALUES ('"+ str_name+ "', '"+ str_payment+ "', '"+ str_category+ "', '"+ str_payYY+ "', '"+ str_payMM+ "', '"+ str_payDD+ "', '"+ str_payCycleYY+ "', '"+ str_payCycleMM+ "', '"+ str_payCycleDD+ "', '"+ str_notiYY+ "', '"+ str_notiMM+ "', '"+ str_notiDD+ "', '"+ str_memo+ "');")
-            sqlitedb.close()
+            try {
+                //DB에 쓰기, subaddDB에 내용 저장하기, DB 닫기
+                sqlitedb = dbManager.writableDatabase
+                sqlitedb.execSQL("INSERT INTO subaddDB VALUES ('"+ str_name+ "', '"+ str_payment+ "', '"+ str_category+ "', '"+ str_payYY+ "', '"+ str_payMM+ "', '"+ str_payDD+ "', '"+ str_payCycleYY+ "', '"+ str_payCycleMM+ "', '"+ str_payCycleDD+ "', '"+ str_notiYY+ "', '"+ str_notiMM+ "', '"+ str_notiDD+ "', '"+ str_memo+ "');")
+                sqlitedb.close()
+            }catch (e: SQLiteConstraintException){
+                //토스트 메시지 출력
+                Toast.makeText(this, "이미 존재하는 구독서비스입니다.", Toast.LENGTH_SHORT).show()
+            }
+
 
             //저장한 내용의 브랜드 이름을 메인 액티비티로 전달
             val intent = Intent(this, MainActivity::class.java)

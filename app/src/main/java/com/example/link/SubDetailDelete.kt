@@ -33,9 +33,6 @@ class SubDetailDelete : AppCompatActivity() {
     lateinit var tvmemo: TextView
     lateinit var btnback: ImageButton
 
-    //lateinit var str_name: String
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_detail_delete)
@@ -73,12 +70,12 @@ class SubDetailDelete : AppCompatActivity() {
         //DB읽기
         sqlitedb = dbManager.readableDatabase
 
-        //DB 커서
+        //DB 커서 선언
         var cursor: Cursor
+        //subaddDB에서 subName이 str_name인 모든 컬럼 조회
         cursor = sqlitedb.rawQuery("SELECT * FROM subaddDB WHERE subName = '" + str_name + "';", null)
 
         while(cursor.moveToNext()){
-            //var str_name = cursor.getString(cursor.getColumnIndex("subName")).toString()
             var str_payment = cursor.getInt(cursor.getColumnIndex("payment"))
             var str_category = cursor.getString(cursor.getColumnIndex("subCategory")).toString()
             var str_payYY = cursor.getInt(cursor.getColumnIndex("payDateYY"))
@@ -92,6 +89,7 @@ class SubDetailDelete : AppCompatActivity() {
             var str_notiDD = cursor.getInt(cursor.getColumnIndex("notiDD"))
             var str_memo = cursor.getString(cursor.getColumnIndex("memo")).toString()
 
+            //위젯에 DB에서 가져온 정보 출력
             tvName.text = str_name
             tvPayment.text =str_payment.toString()
             tvCategory.text=str_category
@@ -113,7 +111,7 @@ class SubDetailDelete : AppCompatActivity() {
         sqlitedb.close()
         dbManager.close()
 
-        //수정하기 버튼을 눌렀을 때 SubUpdate 액티비티로 이동
+        //btnUpdate(수정하기) 버튼을 눌렀을 때 SubUpdate(구독 정보 수정)액티비티로 이동
         btnUpdate.setOnClickListener {
             //SubUpdate 액티비티로 이동
             val intent = Intent(this, SubUpdate::class.java)
@@ -121,7 +119,7 @@ class SubDetailDelete : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //삭제하기 버튼을 눌렀을 때
+        //btnDelete(삭제하기) 버튼을 눌렀을 때
         btnDelete.setOnClickListener {
             dbManager = DBManager(this, "subaddDB", null, 1)
             sqlitedb = dbManager.readableDatabase
