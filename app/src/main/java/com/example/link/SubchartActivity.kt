@@ -43,10 +43,6 @@ class SubchartActivity : AppCompatActivity() {
 
         //리사이클러뷰에 내가 만들어놓은 어댑터 연결
         val mAdapter = RcviewAdapter(this, subDataList) {SubData ->
-           /*var str_name = intent.getStringExtra("title_str").toString()
-            val intent = Intent(this, SubInfo::class.java)
-            intent.putExtra("intent_name", str_name)
-            startActivity(intent)*/
             var str_name = SubData.subTitle
             val intent = Intent(this, SubInfo::class.java)
             intent.putExtra("intent_name", str_name)
