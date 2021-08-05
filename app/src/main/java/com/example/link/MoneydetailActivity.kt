@@ -214,9 +214,14 @@ class MoneydetailActivity : AppCompatActivity() {
                     txt_feedback.text = "예산을 입력하세요."}
 
                 //예산을 바꾼 뒤 세이브데이터에 저장
-                saveData(txt_budget.text.toString().toInt(),
-                    txt_budget2.text.toString().toInt(),
-                    edtxt_set_budget.text.toString().toInt())
+                try{
+                    saveData(txt_budget.text.toString().toInt(),
+                        txt_budget2.text.toString().toInt(),
+                        edtxt_set_budget.text.toString().toInt())
+                }catch (e: NumberFormatException){
+                }
+
+
             }
 
 
