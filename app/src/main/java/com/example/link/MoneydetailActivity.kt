@@ -7,10 +7,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -30,11 +27,19 @@ class MoneydetailActivity : AppCompatActivity() {
     lateinit var txt_budget: TextView
     lateinit var txt_budget2: TextView
     lateinit var txt_total2: TextView
+    lateinit var mndetail_prgrsBar: ProgressBar
+    lateinit var txt_per:TextView
+    lateinit var txt_prog:TextView
+    lateinit var txt_feedback:TextView
+    lateinit var mndetail_icon: ImageView
 
     //DB 변수 선언
     lateinit var dbManager: DBManager
     lateinit var sqlitedb: SQLiteDatabase
+
     var total_payment: Int = 0
+    var percent:Int = 0
+    var budget:Int = 0
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -53,9 +58,15 @@ class MoneydetailActivity : AppCompatActivity() {
         txt_budget = findViewById(R.id.txt_budget)
         txt_budget2 = findViewById(R.id.txt_budget2)
         txt_total2 = findViewById(R.id.txt_total2)
+        mndetail_prgrsBar = findViewById(R.id.mndetail_prgrsBar)
+        txt_per = findViewById(R.id.txt_per)
+        txt_prog = findViewById(R.id.txt_prog)
+        mndetail_icon = findViewById(R.id.mndetail_icon)
+        txt_feedback = findViewById(R.id.txt_feedback)
 
         //설정한 예산 불러오기
         loadData()
+
 
         //버튼 클릭 시 구독서비스등록 화면으로 이동
         btn_plus.setOnClickListener {
@@ -87,16 +98,7 @@ class MoneydetailActivity : AppCompatActivity() {
             }
         }
 
-        //예산 금액 '입력' 버튼을 눌렀을 때
-        btn_set_budget.setOnClickListener {
-            txt_budget.text = edtxt_set_budget.text
-            txt_budget2.text = edtxt_set_budget.text
 
-            saveData(txt_budget.text.toString().toInt(),
-                txt_budget2.text.toString().toInt(),
-                edtxt_set_budget.text.toString().toInt())
-
-        }
 
         //subaddDB 연동
         dbManager = DBManager(this, "subaddDB", null, 1)
@@ -110,6 +112,89 @@ class MoneydetailActivity : AppCompatActivity() {
             total_payment = cursor.getInt(cursor.getColumnIndex("SUM(payment)"))
             txt_total2.text = total_payment.toString()
         }
+        budget = txt_budget.text.toString().toInt()
+
+
+        /*------------액티비티에 들어올 때 퍼센트 계산-----------*/
+        percent = (total_payment.toDouble() / budget.toDouble() * 100.0).toInt()
+        if (percent > 100) {
+            percent = 100
+
+            txt_per.visibility = View.INVISIBLE
+            txt_prog.text = "초과"
+        } else{
+            // txt_per.visibility = View.VISIBLE
+            txt_prog.text = percent.toString()
+        }
+        /*------------액티비티에 들어올 때 예산평가안 출력-----------*/
+        mndetail_prgrsBar.progress = percent
+        when(percent){
+            0 -> {mndetail_icon.setImageResource(R.drawable.ic_logomint)
+                txt_feedback.text = "예산을 입력하세요."}
+
+            in 1..49 -> {mndetail_icon.setImageResource(R.drawable.ic_nice)
+                txt_feedback.text = "조금 더 즐겨도 돼요."}
+
+            in 50..79 -> {mndetail_icon.setImageResource(R.drawable.ic_good)
+                txt_feedback.text = "잘하고 있어요!"}
+
+            in 80..99 -> {mndetail_icon.setImageResource(R.drawable.ic_warning)
+                txt_feedback.text = "조금 아슬아슬해요."}
+
+            100 -> {mndetail_icon.setImageResource(R.drawable.ic_fail)
+                txt_feedback.text = "예산을 초과했어요.\n 링크를 해지 할 구독은 없나요?"}
+        }
+
+
+
+        /*------------------예산 금액 '입력' 버튼을 눌렀을 때--------------*/
+        btn_set_budget.setOnClickListener {
+            txt_budget.text = edtxt_set_budget.text
+            txt_budget2.text = edtxt_set_budget.text
+           budget = txt_budget.text.toString().toInt()
+
+            //예산을 바꿀때마다 퍼센트 계산
+            percent = (total_payment.toDouble() / budget.toDouble() * 100.0).toInt()
+            if (percent > 100) {
+                percent = 100
+
+                txt_per.visibility = View.INVISIBLE
+                txt_prog.text = "초과"
+            } else{
+                txt_per.visibility = View.VISIBLE
+                txt_prog.text = percent.toString()
+            }
+
+            //예산을 바꾼 뒤 프로그레스바 수정
+            mndetail_prgrsBar.progress = percent
+
+            //예산을 바꾼 뒤 예산평가안 출력
+            when(percent){
+                0 -> {mndetail_icon.setImageResource(R.drawable.ic_logomint)
+                    txt_feedback.text = "예산을 입력하세요."}
+
+                in 1..49 -> {mndetail_icon.setImageResource(R.drawable.ic_nice)
+                    txt_feedback.text = "조금 더 즐겨도 돼요."}
+
+                in 50..79 -> {mndetail_icon.setImageResource(R.drawable.ic_good)
+                    txt_feedback.text = "잘하고 있어요!"}
+
+                in 80..99 -> {mndetail_icon.setImageResource(R.drawable.ic_warning)
+                    txt_feedback.text = "조금 아슬아슬해요."}
+
+                100 -> {mndetail_icon.setImageResource(R.drawable.ic_fail)
+                    txt_feedback.text = "예산을 초과했어요.\n 링크를 해지 할 구독은 없나요?"}
+
+
+            }
+
+            //예산을 바꾼 뒤 세이브데이터에 저장
+            saveData(txt_budget.text.toString().toInt(),
+                txt_budget2.text.toString().toInt(),
+                edtxt_set_budget.text.toString().toInt())
+        }
+        /*------------------------------------------------*/
+
 
         //커서 닫기
         cursor.close()
