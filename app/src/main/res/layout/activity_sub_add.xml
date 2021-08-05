@@ -312,7 +312,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="다음 결제 알림"
+                    android:text="다음 결제일"
                     android:paddingLeft="3dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
