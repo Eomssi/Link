@@ -2,6 +2,7 @@ package com.example.link
 
 import android.content.Intent
 import android.database.Cursor
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import java.lang.NullPointerException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -112,7 +114,11 @@ class MoneydetailActivity : AppCompatActivity() {
             total_payment = cursor.getInt(cursor.getColumnIndex("SUM(payment)"))
             txt_total2.text = total_payment.toString()
         }
-        budget = txt_budget.text.toString().toInt()
+        try{
+        budget = txt_budget.text.toString().toInt()}
+        catch (e: NumberFormatException){
+            budget = 0
+        }
 
 
         /*------------액티비티에 들어올 때 퍼센트 계산-----------*/
@@ -154,57 +160,67 @@ class MoneydetailActivity : AppCompatActivity() {
 
 
         /*------------------예산 금액 '입력' 버튼을 눌렀을 때--------------*/
-        btn_set_budget.setOnClickListener {
-            txt_budget.text = edtxt_set_budget.text
-            txt_budget2.text = edtxt_set_budget.text
-           budget = txt_budget.text.toString().toInt()
 
-            //예산을 바꿀때마다 퍼센트 계산
-            percent = (total_payment.toDouble() / budget.toDouble() * 100.0).toInt()
-            if (percent > 100) {
-                percent = 100
+            btn_set_budget.setOnClickListener {
+                txt_budget.text = edtxt_set_budget.text
+                    txt_budget2.text = edtxt_set_budget.text
+                try {
+                    budget = txt_budget.text.toString().toInt()}
+                catch (e: NumberFormatException){//토스트 메시지 출력
+                    Toast.makeText(
+                        this, "값을 입력하세요.", Toast.LENGTH_SHORT).show()
+                    budget = 0
+                }
 
-                txt_per.visibility = View.INVISIBLE
-                txt_prog.text = "초과"
-            } else{
-                txt_per.visibility = View.VISIBLE
-                txt_prog.text = percent.toString()
-            }
+                //예산을 바꿀때마다 퍼센트 계산
+                percent = (total_payment.toDouble() / budget.toDouble() * 100.0).toInt()
+                if (percent > 100) {
+                    percent = 100
 
-            //예산을 바꾼 뒤 프로그레스바 수정
-            mndetail_prgrsBar.progress = percent
+                    txt_per.visibility = View.INVISIBLE
+                    txt_prog.text = "초과"
+                } else{
+                    txt_per.visibility = View.VISIBLE
+                    txt_prog.text = percent.toString()
+                }
 
-            //예산을 바꾼 뒤 예산평가안 출력
-            when(percent){
-                0 -> {mndetail_icon.setImageResource(R.drawable.ic_logomint)
+                //예산을 바꾼 뒤 프로그레스바 수정
+                mndetail_prgrsBar.progress = percent
+
+                //예산을 바꾼 뒤 예산평가안 출력
+                when(percent){
+                    0 -> {mndetail_icon.setImageResource(R.drawable.ic_logomint)
+                        txt_feedback.text = "예산을 입력하세요."}
+
+                    in 1..49 -> {mndetail_icon.setImageResource(R.drawable.ic_nice)
+                        txt_feedback.text = "조금 더 즐겨도 돼요."}
+
+                    in 50..79 -> {mndetail_icon.setImageResource(R.drawable.ic_good)
+                        txt_feedback.text = "잘하고 있어요!"}
+
+                    in 80..99 -> {mndetail_icon.setImageResource(R.drawable.ic_warning)
+                        txt_feedback.text = "조금 아슬아슬해요."}
+
+                    100 -> {mndetail_icon.setImageResource(R.drawable.ic_fail)
+                        txt_feedback.text = "예산을 초과했어요.\n 링크를 해지 할 구독은 없나요?"}
+
+
+                }
+
+                if(budget==0){
+                    txt_per.visibility = View.VISIBLE
+                    txt_prog.text = 0.toString()
+                    mndetail_icon.setImageResource(R.drawable.ic_logomint)
                     txt_feedback.text = "예산을 입력하세요."}
 
-                in 1..49 -> {mndetail_icon.setImageResource(R.drawable.ic_nice)
-                    txt_feedback.text = "조금 더 즐겨도 돼요."}
-
-                in 50..79 -> {mndetail_icon.setImageResource(R.drawable.ic_good)
-                    txt_feedback.text = "잘하고 있어요!"}
-
-                in 80..99 -> {mndetail_icon.setImageResource(R.drawable.ic_warning)
-                    txt_feedback.text = "조금 아슬아슬해요."}
-
-                100 -> {mndetail_icon.setImageResource(R.drawable.ic_fail)
-                    txt_feedback.text = "예산을 초과했어요.\n 링크를 해지 할 구독은 없나요?"}
-
-
+                //예산을 바꾼 뒤 세이브데이터에 저장
+                saveData(txt_budget.text.toString().toInt(),
+                    txt_budget2.text.toString().toInt(),
+                    edtxt_set_budget.text.toString().toInt())
             }
 
-            if(budget==0){
-                txt_per.visibility = View.VISIBLE
-                txt_prog.text = 0.toString()
-                mndetail_icon.setImageResource(R.drawable.ic_logomint)
-                txt_feedback.text = "예산을 입력하세요."}
 
-            //예산을 바꾼 뒤 세이브데이터에 저장
-            saveData(txt_budget.text.toString().toInt(),
-                txt_budget2.text.toString().toInt(),
-                edtxt_set_budget.text.toString().toInt())
-        }
+
         /*------------------------------------------------*/
 
 
