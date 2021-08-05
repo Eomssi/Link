@@ -13,7 +13,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-/*-------- 메인에서 결제금액이 나온 뷰 속 버튼을 클릭하면 나오는 결제분석창 ---------*/
+/*-------- 메인에서 결제금액이 나온 뷰 속 버튼을 클릭하면 나오는 이달 소비 분석창 ---------*/
 class MoneydetailActivity : AppCompatActivity() {
 
     //xml파일에서 사용한 변수 선언
@@ -122,8 +122,8 @@ class MoneydetailActivity : AppCompatActivity() {
 
             txt_per.visibility = View.INVISIBLE
             txt_prog.text = "초과"
-        } else{
-            // txt_per.visibility = View.VISIBLE
+        } else {
+            txt_per.visibility = View.VISIBLE
             txt_prog.text = percent.toString()
         }
         /*------------액티비티에 들어올 때 예산평가안 출력-----------*/
@@ -144,6 +144,12 @@ class MoneydetailActivity : AppCompatActivity() {
             100 -> {mndetail_icon.setImageResource(R.drawable.ic_fail)
                 txt_feedback.text = "예산을 초과했어요.\n 링크를 해지 할 구독은 없나요?"}
         }
+
+        if(budget==0){
+            txt_per.visibility = View.VISIBLE
+            txt_prog.text = 0.toString()
+            mndetail_icon.setImageResource(R.drawable.ic_logomint)
+            txt_feedback.text = "예산을 입력하세요."}
 
 
 
@@ -187,6 +193,12 @@ class MoneydetailActivity : AppCompatActivity() {
 
 
             }
+
+            if(budget==0){
+                txt_per.visibility = View.VISIBLE
+                txt_prog.text = 0.toString()
+                mndetail_icon.setImageResource(R.drawable.ic_logomint)
+                txt_feedback.text = "예산을 입력하세요."}
 
             //예산을 바꾼 뒤 세이브데이터에 저장
             saveData(txt_budget.text.toString().toInt(),
