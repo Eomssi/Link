@@ -33,6 +33,8 @@ class MainAdapter (val context: Context, val mainSubDataList: ArrayList<MainSubD
         val mLogoImg = itemView?.findViewById<CircleImageView>(R.id.mLogoImgView)
         val mSubTitle = itemView?.findViewById<TextView>(R.id.mSubTitle)
         val mSubPayment = itemView?.findViewById<TextView>(R.id.mSubPayment)
+        val mDateMM = itemView?.findViewById<TextView>(R.id.mPaymentDate_MM)
+        val mDatedd = itemView?.findViewById<TextView>(R.id.mPaymentDate_dd)
 
         //뷰홀더에 각 데이터를 입력하는 함수
         fun bind(mainSubData: MainSubData, context: Context) {
@@ -45,6 +47,8 @@ class MainAdapter (val context: Context, val mainSubDataList: ArrayList<MainSubD
             }
             mSubTitle?.text = mainSubData.subTitle
             mSubPayment?.text = mainSubData.subPayment.toString()
+            mDateMM?.text = mainSubData.subDateMM.toString()
+            mDatedd?.text = mainSubData.subDatedd.toString()
 
             val pos = adapterPosition
 

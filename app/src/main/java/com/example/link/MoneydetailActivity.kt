@@ -63,7 +63,7 @@ class MoneydetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
         //버튼 클릭 시 메인 화면으로 이동
-       btn_show_main.setOnClickListener {
+        btn_show_main.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }

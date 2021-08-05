@@ -80,10 +80,7 @@ class MainActivity : AppCompatActivity() {
 
         //리사이클러뷰에 내가 만들어놓은 어댑터 연결
         val mAdapter = MainAdapter(this, mainSubDataList) {MainSubData ->
-            /*var str_name = intent.getStringExtra("title_str").toString()
-             val intent = Intent(this, SubInfo::class.java)
-             intent.putExtra("intent_name", str_name)
-             startActivity(intent)*/
+
             var str_name = MainSubData.subTitle
             val intent = Intent(this, SubDetailDelete::class.java)
             intent.putExtra("intent_name", str_name)
@@ -114,6 +111,8 @@ class MainActivity : AppCompatActivity() {
         while(cursor.moveToNext()) {
             var str_name = cursor.getString(cursor.getColumnIndex("subName")).toString()
             var payment = cursor.getInt(cursor.getColumnIndex("payment"))
+            var dateMM =  cursor.getInt(cursor.getColumnIndex("notiMM"))
+            var datedd = cursor.getInt(cursor.getColumnIndex("notiDD"))
 
             //로고 설정, str_name에 따라 로고 이미지 변경
             var logo: String
@@ -220,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             //subaddDB에서 받은 내용 mainSubDataList 배열에 추가
-            var mSubData = MainSubData(logo, str_name, payment)
+            var mSubData = MainSubData(logo, str_name, payment, dateMM, datedd)
             mainSubDataList.add(mSubData)
             //어댑터에 초기화 요청
             mAdapter.notifyDataSetChanged()

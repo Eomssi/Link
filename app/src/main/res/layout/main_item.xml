@@ -17,15 +17,79 @@
     android:layout_margin="16dp" />
 
     //구독 서비스 이름을 보여주는 텍스트뷰
-<TextView
-android:id="@+id/mSubTitle"
-android:layout_width="135dp"
-android:layout_height="wrap_content"
-android:layout_gravity="center|left"
-android:layout_weight="1"
-android:text="닌텐도 스위치 온라인"
-android:textColor="#000000"
-android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="135dp"
+        android:layout_height="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mSubTitle"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:text="닌텐도 스위치 온라인"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="45dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/mPaymentDate_MM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textColor="#607571"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/mPaymentDate_MM"
+                    android:layout_toRightOf="@id/mPaymentDate_MM"
+                    android:layout_weight="1"
+                    android:text="월"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/mPaymentDate_dd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/textView6"
+                    android:layout_toRightOf="@id/textView6"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/mPaymentDate_dd"
+                    android:layout_toRightOf="@id/mPaymentDate_dd"
+                    android:layout_weight="1"
+                    android:text="일"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -33,19 +97,21 @@ android:textStyle="bold" />
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_link" />
 
-<TextView
-android:id="@+id/mSubPayment"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="TextView"
-android:textStyle="bold"
-tools:text="10000" />
+    <TextView
+        android:id="@+id/mSubPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:text="10000" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="원"
+        android:textColor="#000000"
         android:textStyle="bold" />
 
 
