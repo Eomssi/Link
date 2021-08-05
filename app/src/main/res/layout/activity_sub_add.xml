@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/tlbname"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_margin="20dp"
             android:textColor="@color/black"
             android:textSize="18sp"
@@ -33,6 +33,8 @@
 
     </LinearLayout>
 
+    <!--데이터를 출력하면 뷰 길이보다 길어지기 때문에
+        ScrollView사용-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -393,7 +395,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_addbutton"
+                    android:background="@drawable/btn_cn15_background"
                     android:fontFamily="@font/notosanscjkkr_bold"
                     android:text="추가하기"
                     android:textSize="15sp" />

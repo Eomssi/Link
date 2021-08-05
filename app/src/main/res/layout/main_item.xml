@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:divider="@drawable/afreecatv_logo"
     android:gravity="center"
     android:orientation="horizontal">
 
-    //둥글게 구독 서비스 로고를 보여줄 써클이미지뷰
+    <!--activity_main.xml 내 RecyclerView에 출력될
+    아이템뷰의 레이아웃을 배치하는 xml파일-->
+
+    <!--둥글게 구독 서비스 로고를 보여주기 위해 CircleImageView-->
 <de.hdodenhof.circleimageview.CircleImageView
     android:id="@+id/mLogoImgView"
     android:layout_width="40dp"
@@ -16,10 +18,9 @@
     android:layout_gravity="center"
     android:layout_margin="16dp" />
 
-    //구독 서비스 이름을 보여주는 텍스트뷰
 
     <LinearLayout
-        android:layout_width="135dp"
+        android:layout_width="176dp"
         android:layout_height="40dp"
         android:orientation="vertical">
 
@@ -40,6 +41,8 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
+            <!--값이 변하는 textView가 있기 때문에
+            값의 길이가 변해도 상대적 위치를 유지시키는 RelativeLayout 사용-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -94,16 +97,19 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="52dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_link" />
 
+    <!--금액을 "원"Textview와 붙여주기 위해
+    textAlignment="textEnd" 사용-->
     <TextView
         android:id="@+id/mSubPayment"
-        android:layout_width="wrap_content"
+        android:layout_width="77dp"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textAlignment="textEnd"
         android:textColor="#000000"
         android:textStyle="bold"
         tools:text="10000" />
@@ -111,8 +117,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
         android:layout_weight="1"
         android:text="원"
+        android:textAlignment="textStart"
         android:textColor="#000000"
         android:textStyle="bold" />
 

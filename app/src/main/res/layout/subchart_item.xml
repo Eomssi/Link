@@ -6,11 +6,11 @@
     android:gravity="center"
     android:orientation="horizontal">
 
-    <!--activity_subchart.xml내에 위치한 리사이클러뷰 속 아이템들의 화면구성을
-    결정하는 xml파일-->
+    <!--activity_subchart.xml내에 위치한 RecyclerView에 출력될
+    아이템뷰의 레이아웃을 배치하는 xml파일-->
 
 
-    //둥글게 구독 서비스 로고를 보여줄 써클이미지뷰
+    <!--둥글게 구독 서비스 로고를 출력하기 위해 CircleImageView 사용-->
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mLogoImgView"
@@ -19,7 +19,6 @@
         android:layout_gravity="center"
         android:layout_margin="16dp" />
 
-    //구독 서비스 이름을 보여주는 텍스트뷰
     <TextView
         android:id="@+id/mSubTitle"
         android:layout_width="124dp"
@@ -30,7 +29,6 @@
         android:textColor="#000000"
         android:textStyle="bold" />
 
-    //구독 서비스의 추천태그를 보여주는 텍스트뷰
 
     <TextView
         android:id="@+id/subTag"
@@ -43,7 +41,6 @@
         android:textColor="#79B2BF"
         android:textSize="12sp" />
 
-    //누르면 해당 서비스를 추가할 수 있도록 하는 이미지 버튼
 
     <ImageView
         android:id="@+id/btnShowSubadd"

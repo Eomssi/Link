@@ -178,6 +178,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.993">
 
+        <!--구독 추가할 서비스들을 아이템으로 동적 생성하고
+        생성된 아이템들이 화면 길이를 초과할 경우
+        스크롤 가능한 리스트로 구현하기 위한 RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcView_main"
             android:layout_width="match_parent"
